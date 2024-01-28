@@ -75,39 +75,18 @@ const menu = [
 
 
 const menuItems = document.querySelector('.am-menu-items');
-const btns      = document.querySelectorAll('.am-fbtn');
+const filterBtn = document.querySelector('.am-filter-btns');
 
+// Loading all items after the page is fully loaded
 window.addEventListener('DOMContentLoaded', function(){
     displayMenuItems(menu);
-});
-
-btns.forEach(function(btn){
-    btn.addEventListener('click', function(e){
-        // console.log(e.currentTarget.dataset.cat);
-        // console.log(btn.dataset.cat);
-        const category = e.currentTarget.dataset.cat; // The categoty where user clicked
-        const menuCategory = menu.filter(function(menuItem){
-            if (menuItem.category === category) {
-                return menuItem;
-            }
-        });
-        if (category === 'all') {
-            displayMenuItems(menu);
-        }else{
-            displayMenuItems(menuCategory);
-        }
-        btns.forEach(function(btn){
-            btn.classList.remove('am-selected');
-        });
-        
-        this.classList.add('am-selected');
-    });
+    displayMenuCategories();
 });
 
 
+// =================== The function to show menu items ========
 function displayMenuItems(menuItem) {
     let displayMenu = menuItem.map(function( item ){
-        // console.log(item);
         return `
     <div class="am-menu-item">
         <div class="am-m-item-left">
@@ -127,4 +106,50 @@ function displayMenuItems(menuItem) {
     });
     displayMenu = displayMenu.join('');
     menuItems.innerHTML = displayMenu;
+}
+
+// =================== The function to show menu categories ========
+function displayMenuCategories() {
+    categories = menu.reduce(function(values, item){
+        if (!values.includes(item.category)) {
+            values.push(item.category);
+        }
+        return values;
+    }, ['all']);
+
+
+    let displayCategories = categories.map(function(item){
+        return `
+            <div class="am-fbtn" data-cat=${item}>${item}</div>
+        `;
+    }).join('');
+    filterBtn.innerHTML = displayCategories;
+    const btns = document.querySelectorAll('.am-fbtn');
+
+    // Loading items after clicking the button according to  category.
+    btns.forEach(function(btn){
+        btn.addEventListener('click', function(e){
+            // console.log(e.currentTarget.dataset.cat);
+            // console.log(btn.dataset.cat);
+
+            const category = e.currentTarget.dataset.cat; // The categoty where user clicked
+            const menuCategory = menu.filter(function(menuItem){
+                if (menuItem.category === category) {
+                    return menuItem;
+                }
+            });
+            if (category === 'all') {
+                displayMenuItems(menu);
+            }else{
+                displayMenuItems(menuCategory);
+            }
+
+            // This loop removes all the 'am-selected' class from individual buttons.
+            btns.forEach(function(btn){
+                btn.classList.remove('am-selected');
+            });
+            // This adds the 'am-selected' class to current item
+            this.classList.add('am-selected');
+        });
+    });
 }

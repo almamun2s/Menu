@@ -67,6 +67,7 @@ img{
     margin: 0 0.5rem;
     border-radius: 0.5rem;
     cursor: pointer;
+    text-transform: capitalize;
     transition: var(--transition);
 }
 .am-fbtn:hover{
