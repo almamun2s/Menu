@@ -75,9 +75,38 @@ const menu = [
 
 
 const menuItems = document.querySelector('.am-menu-items');
+const btns      = document.querySelectorAll('.am-fbtn');
 
 window.addEventListener('DOMContentLoaded', function(){
-    let displayMenu = menu.map(function( item ){
+    displayMenuItems(menu);
+});
+
+btns.forEach(function(btn){
+    btn.addEventListener('click', function(e){
+        // console.log(e.currentTarget.dataset.cat);
+        // console.log(btn.dataset.cat);
+        const category = e.currentTarget.dataset.cat; // The categoty where user clicked
+        const menuCategory = menu.filter(function(menuItem){
+            if (menuItem.category === category) {
+                return menuItem;
+            }
+        });
+        if (category === 'all') {
+            displayMenuItems(menu);
+        }else{
+            displayMenuItems(menuCategory);
+        }
+        btns.forEach(function(btn){
+            btn.classList.remove('am-selected');
+        });
+        
+        this.classList.add('am-selected');
+    });
+});
+
+
+function displayMenuItems(menuItem) {
+    let displayMenu = menuItem.map(function( item ){
         // console.log(item);
         return `
     <div class="am-menu-item">
@@ -98,4 +127,4 @@ window.addEventListener('DOMContentLoaded', function(){
     });
     displayMenu = displayMenu.join('');
     menuItems.innerHTML = displayMenu;
-})
+}

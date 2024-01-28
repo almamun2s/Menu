@@ -73,6 +73,10 @@ img{
     background-color: var(--cr-gold);
     color: #fff;
 }
+.am-selected{
+    background-color: var(--cr-gold);
+    color: #fff;
+}
 
 /* Menu item */
 .am-menu-items{
