@@ -1,1 +1,121 @@
-*{margin:0;padding:0;box-sizing:border-box}/*# sourceMappingURL=style.css.map */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
+ /* Browser Reset Code ============== */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ /* Global CSS ===================== */
+img{
+    max-width: 100%;
+    height: 100%;
+}
+.am-container{
+    width: 1200px;
+    margin: auto;
+}
+:root{
+    --ff-first: 'Roboto', sans-serif;
+    --ff-second: 'Open Sans', sans-serif;
+    --cr-gold: #c59d5f;
+    --cr-heading: #102a42;
+    --cr-para: #617d98;
+    --transition: all 0.3s ease;
+}
+
+ /* ========= Menu section CSS ======= */
+.am-menu-section{
+    background-color: #f1f5f8;
+    width: 100%;
+    padding-top: 5rem;
+    min-height: 100vh;
+}
+
+/* Menu Header */
+.am-menu-header h1{
+    text-align: center;
+    color: var(--cr-heading);
+    font-size: 2.5rem;
+    font-family: var(--ff-first);
+    text-transform: capitalize;
+    position: relative;
+    /* padding-bottom: 0.5rem; */
+    margin-bottom: 1rem;
+}
+.am-menu-header h1::after{
+    content: '';
+    width: 20%;
+    height: 3px;
+    background-color: var(--cr-gold);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.am-filter-btns{
+    font-family: var(--ff-second);
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+}
+.am-fbtn{
+    color: var(--cr-gold);
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border: 2px solid var(--cr-gold);
+    margin: 0 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+.am-fbtn:hover{
+    background-color: var(--cr-gold);
+    color: #fff;
+}
+
+/* Menu item */
+.am-menu-items{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+}
+.am-menu-item{
+    width: 48%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+.am-m-item-left{
+    width: 38%;
+    border: 3px solid var(--cr-gold);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+.am-m-item-right{
+    width: 58%;
+}
+.am-mi-right-top{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted var(--cr-para);
+    padding-bottom: 0.3rem;
+}
+.am-mir-top-title{
+    font-family: var(--ff-first);
+    color: var(--cr-heading);
+    font-weight: 700;
+    letter-spacing: 0.2rem;
+}
+.am-mir-top-price{
+    font-family: var(--ff-second);
+    color: var(--cr-gold);
+    font-weight: 700;
+    letter-spacing: 0.2rem;
+}
+
+.am-mi-right-bottom p{
+    color: var(--cr-para);
+    font-family: var(--ff-second);
+    padding-top: 1rem;
+}
